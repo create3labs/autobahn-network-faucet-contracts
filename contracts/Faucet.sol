@@ -15,6 +15,7 @@ contract Faucet is Ownable {
     }
 
     function sendGas(address payable to) external onlyOwner {
+        require(receivedGas[to] == 0, 'Faucet: Has already received gas');
         receivedGas[to] += gasAmount;
         to.transfer(gasAmount);
         emit GasSent(to, gasAmount);

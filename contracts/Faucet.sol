@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 
 contract Faucet is Ownable {
     uint256 public gasAmount;
-    mapping(address => uint256) public hasReceivedGas;
+    mapping(address => uint256) public receivedGas;
 
     event GasReceived(address indexed from, uint256 indexed amount);
     event GasSent(address indexed to, uint256 indexed amount);
@@ -15,7 +15,7 @@ contract Faucet is Ownable {
     }
 
     function sendGas(address payable to) external onlyOwner {
-        hasReceivedGas[to] += gasAmount;
+        receivedGas[to] += gasAmount;
         to.transfer(gasAmount);
         emit GasSent(to, gasAmount);
     }

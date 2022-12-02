@@ -7,7 +7,7 @@ const sleep = async (ms: number) =>
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deploy } = hre.deployments;
   const { deployer } = await hre.getNamedAccounts();
-  const args = [hre.ethers.utils.parseEther('1')];
+  const args = [hre.ethers.utils.parseEther('10')];
   const deployResult = await deploy('Faucet', {
     from: deployer,
     args,
